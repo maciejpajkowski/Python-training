@@ -10,10 +10,9 @@ clear()
 print("Welcome to the number guessing game!")
 print("------------------------------------")
 
-game = True
 tries = 0
 
-while game:
+while True:
     if tries is 0:
       num = random.randint(1,9)
     print("Guess the number!")
