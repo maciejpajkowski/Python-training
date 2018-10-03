@@ -30,5 +30,6 @@ def generatePassword():
 
     result = "".join(password)
     print(result)
+    input("Press enter to quit...")
 
 generatePassword()
