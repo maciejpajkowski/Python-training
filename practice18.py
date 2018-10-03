@@ -11,11 +11,11 @@ def cowsAndBulls():
     print("For each number correctly guessed but in the incorrect place you will receive a bull.")
     print("-----------------------------------")
     
-    
-    
     numToGuess = str(random.randint(1000,9999))
+    tries = 0
 
     while True:
+        tries += 1
         userNum = 0
         cows = 0
         bulls = 0 
@@ -31,24 +31,35 @@ def cowsAndBulls():
         userNum = str(userNum)
 
         # print(numToGuess) # DEBUG
-        print(userNum) # DEBUG
+        # print(userNum) # DEBUG
 
-        for num in userNum:
-            for guessNum in numToGuess:
-                if (num == guessNum):
-                    bulls += 1
+        numToGuessCopy = list(numToGuess).copy()
+        
+        # print(numToGuessCopy) # DEBUG
 
         for i in range(0, 4):        
             if (userNum[i] == numToGuess[i]):
-                bulls -= 1
                 cows += 1
+            else:
+                if (userNum[i] in numToGuessCopy):
+                    bulls += 1
+                    numToGuessCopy.pop(numToGuessCopy.index(userNum[i]))
         
         userNum = 0
         print("Cows:", cows, "Bulls:", bulls)
         print("-----------------------------------")
 
+        if (cows == 4 and tries == 1):
+            print("************************")
+            print("HOLY S#$T! You did it on the first try! God damn it man, go buy a lottery ticket or something")
+            print("************************")
+            print("I'm really impressed. How the hell did you do it?")
+            print("Anyway... congratulations. You guessed it right away. You can uninstall this game now.")
+            input("Press enter to quit...")
+
         if (cows == 4):
             print("Congratulations! You correctly guessed the number!")
+            print("It took you", tries, "tries! Try to guess the next number even faster!")
             input("Press enter to quit...")
             break
 
