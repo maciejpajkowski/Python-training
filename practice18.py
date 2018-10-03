@@ -35,7 +35,7 @@ def cowsAndBulls():
 
         numToGuessCopy = list(numToGuess).copy()
         
-        # print(numToGuessCopy) # DEBUG
+        print(numToGuessCopy) # DEBUG
 
         for i in range(0, 4):        
             if (userNum[i] == numToGuess[i]):
@@ -43,7 +43,8 @@ def cowsAndBulls():
             else:
                 if (userNum[i] in numToGuessCopy):
                     bulls += 1
-                    numToGuessCopy.pop(numToGuessCopy.index(userNum[i]))
+                    numToGuessCopy.remove(userNum[i])
+                    print("Else if,", numToGuessCopy)
         
         userNum = 0
         print("Cows:", cows, "Bulls:", bulls)
@@ -56,6 +57,7 @@ def cowsAndBulls():
             print("I'm really impressed. How the hell did you do it?")
             print("Anyway... congratulations. You guessed it right away. You can uninstall this game now.")
             input("Press enter to quit...")
+            break
 
         if (cows == 4):
             print("Congratulations! You correctly guessed the number!")
