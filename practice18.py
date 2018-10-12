@@ -34,17 +34,26 @@ def cowsAndBulls():
         # print(userNum) # DEBUG
 
         numToGuessCopy = list(numToGuess).copy()
+        userNumCopy = list(userNum).copy()
         
-        print(numToGuessCopy) # DEBUG
+        # print(numToGuessCopy) # DEBUG
 
-        for i in range(0, 4):        
-            if (userNum[i] == numToGuess[i]):
+        # print("Starting first loop (cows)") # DEBUG
+        for i in range(0, 4):
+            if (numToGuess[i] == userNum[i]):
                 cows += 1
-            else:
-                if (userNum[i] in numToGuessCopy):
-                    bulls += 1
-                    numToGuessCopy.remove(userNum[i])
-                    print("Else if,", numToGuessCopy)
+                numToGuessCopy.remove(userNum[i])
+                userNumCopy.remove(userNum[i])
+                # print("Removed from numToGuessCopy:", userNum[i]) # DEBUG
+                # print("Current state of numToGuessCopy:", numToGuessCopy) # DEBUG
+        
+        # print("Starting second loop (bulls)") # DEBUG
+        for item in userNumCopy:
+            if (item in numToGuessCopy):
+                bulls += 1
+                numToGuessCopy.remove(item)
+                # print ("Removed from numToGuessCopy:", item) # DEBUG
+                # print("Current state of numToGuessCopy:", numToGuessCopy) # DEBUG
         
         userNum = 0
         print("Cows:", cows, "Bulls:", bulls)
